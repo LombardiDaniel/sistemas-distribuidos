@@ -1,0 +1,27 @@
+version: "3.9"
+
+services:
+  redis:
+    image: redis:latest
+    expose:
+      - 6379
+    ports:
+      - 6379:6379
+
+  redis-commander: # interface do redis
+    image: rediscommander/redis-commander:latest
+    restart: always
+    environment:
+      REDIS_HOST: redis
+      REDIS_PORT: redis:6379
+    ports:
+      - 8081:8081
+
+  postgres:
+    image: postgres:13
+    environment:
+      POSTGRES_DB: db
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: pass
+    ports:
+      - 5432:5432

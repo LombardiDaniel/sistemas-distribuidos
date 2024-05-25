@@ -26,7 +26,7 @@ end = time.perf_counter()
 # t2.start()
 
 # t1.join()
-# t2.start()
+# t2.join()
 
 # end = time.perf_counter()
 
@@ -35,8 +35,8 @@ end = time.perf_counter()
 
 # threads = []
 # for _ in range(10):
-#     t1 = Thread(target=fazer_algo)
-#     t1.start()
+#     t = Thread(target=fazer_algo)
+#     t.start()
 #     threads.append(t)
 
 # for thread in threads:

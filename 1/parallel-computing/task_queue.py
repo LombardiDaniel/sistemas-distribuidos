@@ -38,12 +38,12 @@ def work(worker_id: int, queue: mp.Queue):
         print(f"WORKER_{worker_id}: task rcvd: {task['id']}")
 
         start = datetime.now()
-        process_data(task["numbers"])
+        res = process_data(task["numbers"])
         time.sleep(5)
         end = datetime.now()
 
         print(
-            f"WORKER_{worker_id}: task {task['id']} done in {(end - start).total_seconds()}s"
+            f"WORKER_{worker_id}: task {task['id']}:{res} done in {(end - start).total_seconds()}s"
         )
 
 

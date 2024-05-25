@@ -43,7 +43,7 @@ def main():
     """main"""
     threads = []
     for _ in range(NUM_THREADS):
-        t = threading.Thread(target=add_to_counter, args=(COUNTER,))
+        t = threading.Thread(target=add_to_counter_with_lock, args=(COUNTER,))
         threads.append(t)
 
     for thread in threads:

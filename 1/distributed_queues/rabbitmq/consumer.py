@@ -12,10 +12,11 @@ def work(msg: dict) -> None:
 
 def callback(ch, method, properties, body):
     """msg callback"""
+    ch.basic_ack(delivery_tag=method.delivery_tag)  # <- !!! confirmação
     print(f" [x] Received {body}")
     msg = json.loads(body)
     work(msg)
-    ch.basic_ack(delivery_tag=method.delivery_tag)  # <- !!! confirmação
+    # ch.basic_ack(delivery_tag=method.delivery_tag)  # <- !!! confirmação
 
 
 def main():
@@ -28,7 +29,7 @@ def main():
     connection = pika.BlockingConnection(parameters)
     channel = connection.channel()
 
-    queue_name = "tasks.queue"
+    queue_name = "tasks.queue.daniel-lombardi"
     channel.queue_declare(queue=queue_name)
     channel.basic_qos(prefetch_count=1)
     channel.basic_consume(
