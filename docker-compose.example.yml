@@ -1,0 +1,27 @@
+version: "3"
+
+services:
+  web:
+    image: myapp-image
+    networks:
+      - myapp_network
+    expose:
+      - 5555 # expoe a porta do "web" à rede "myapp_network"
+
+  db:
+    image: postgres
+    networks:
+      - myapp_network
+    expose:
+      - 5432 # expoe a porta do "db" à rede "myapp_network"
+
+  nginx:
+    image: nginx:latest
+    ports:
+      - "80:80" # mapeia a porta 80 do "nginx" para a porta 80 da máquina, "expoe" o sistema ao mundo
+    networks:
+      - myapp_network
+
+networks:
+  myapp_network:
+    driver: bridge
