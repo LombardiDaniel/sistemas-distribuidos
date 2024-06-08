@@ -24,7 +24,13 @@ REDIS_CLIENT = redis.Redis()
 def exec_sql(query: str) -> list[tuple[Any, ...]]:
     CURSOR.execute(query)
 
-    return CURSOR.fetchall()
+    CONN.commit()
+
+    try:
+        return CURSOR.fetchall()
+    except Exception as err:
+        print(err)
+        return
 
 
 def get_from_redis():

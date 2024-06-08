@@ -2,7 +2,8 @@ version: "3"
 
 services:
   web:
-    image: myapp-image
+    # image: myapp-image
+    image: ubuntu
     networks:
       - myapp_network
     expose:
@@ -14,11 +15,14 @@ services:
       - myapp_network
     expose:
       - 5432 # expoe a porta do "db" à rede "myapp_network"
+    environment:
+      - POSTGRES_PASSWORD=password
 
   nginx:
     image: nginx:latest
     ports:
       - "80:80" # mapeia a porta 80 do "nginx" para a porta 80 da máquina, "expoe" o sistema ao mundo
+      - "443:443" # mapeia a porta 443 do "nginx" para a porta 443 da máquina, "expoe" o sistema ao mundo
     networks:
       - myapp_network
 
