@@ -20,7 +20,7 @@ def download_and_print(url):
     if response.status_code == 200:
         for line in response.iter_lines():
             decoded_line = line.decode("utf-8")
-            print(decoded_line)
+            print("[DEVICE]: DOWNLOADED:", decoded_line)
     else:
         print("Failed to download file")
 

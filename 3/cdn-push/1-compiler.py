@@ -71,7 +71,7 @@ def compile_code(repo: str, branch: str) -> io.BytesIO:
     compiles code. i.e.:
     # git pull
     # make compile
-    # push exec
+    # push exec.bin
     """
     print("comipiling...")
 
