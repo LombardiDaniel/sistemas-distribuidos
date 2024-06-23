@@ -3,7 +3,8 @@ git clone https://github.com/lerocha/chinook-database
 """
 
 import pickle
-import time
+from multiprocessing import Queue
+from threading import Thread
 from typing import Any
 
 import psycopg2
@@ -19,6 +20,8 @@ CONN = psycopg2.connect(
 CURSOR = CONN.cursor()
 
 REDIS_CLIENT = redis.Redis()
+
+TASK_QUEUE = Queue()
 
 
 def exec_sql(query: str) -> list[tuple[Any, ...]]:
@@ -47,28 +50,31 @@ def save_to_redis(rows):
 
 
 def update(album_id, title):
-    print(title)
     query = f"""
         UPDATE album 
         SET title = '{title}'
         WHERE album_id = {album_id};
     """
 
-    # invalidar o cache
-    REDIS_CLIENT.set(f"sql:album-title:{album_id}", "", ex=3600)
-
-    # att o sql (banco)
-    exec_sql(query)
-
-    # att o cache
     REDIS_CLIENT.set(f"sql:album-title:{album_id}", title, ex=3600)
+
+    # dispatching
+    TASK_QUEUE.put(query)
 
     return 0
 
 
+def update_worker():
+
+    while True:
+        query = TASK_QUEUE.get()
+        exec_sql(query)
+
+
 def main():
-    update(5, "Little Ones")
+    update(5, "Big Ones")
 
 
 if __name__ == "__main__":
+    Thread(target=update_worker).start()
     main()

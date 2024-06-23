@@ -47,21 +47,27 @@ def save_to_redis(rows):
 
 
 def update(album_id, title):
+    print(title)
     query = f"""
         UPDATE album 
         SET title = '{title}'
         WHERE album_id = {album_id};
     """
 
-    REDIS_CLIENT.set(f"sql:album-title:{album_id}", title, ex=3600)
+    # invalidar o cache
+    REDIS_CLIENT.set(f"sql:album-title:{album_id}", "", ex=3600)
 
-    # disparar a atualizacao assíncrona
+    # att o sql (banco)
+    exec_sql(query)
+
+    # att o cache
+    REDIS_CLIENT.set(f"sql:album-title:{album_id}", title, ex=3600)
 
     return 0
 
 
 def main():
-    update(5, "Big Ones")
+    update(5, "Little Ones")
 
 
 if __name__ == "__main__":
