@@ -29,7 +29,7 @@ def main():
     connection = pika.BlockingConnection(parameters)
     channel = connection.channel()
 
-    queue_name = "tasks.queue.daniel-lombardi"
+    queue_name = "tasks.queue"
     channel.queue_declare(queue=queue_name)
     channel.basic_qos(prefetch_count=1)
     channel.basic_consume(
