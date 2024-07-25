@@ -5,5 +5,5 @@
 ---
 
 ```sh
-pip install pika paho-mqtt<2.0.0 rpyc
+pip install pika "paho-mqtt<2.0.0" rpyc
 ```
