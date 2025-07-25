@@ -4,7 +4,7 @@ from uuid import uuid4
 import paho.mqtt.client as mqtt
 
 TOPIC = "/payments/credit-cards/brasil/fraudulent"
-# TOPIC = "$share/my-group/" + TOPIC
+# TOPIC = "$share/my-group-name/" + TOPIC
 
 
 def on_connect(client, userdata, flags, rc):
