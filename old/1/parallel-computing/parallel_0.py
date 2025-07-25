@@ -27,7 +27,7 @@ def process_data(numbers: list[float]) -> float:
 def main():
     """main"""
 
-    numbers = [i * 2 for i in range(9999999)]
+    numbers = [float(i) * 2 for i in range(9999999)]
 
     chunk_size = int(len(numbers) / PROCESSES_COUNT)
 
