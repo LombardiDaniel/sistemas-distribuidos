@@ -1,0 +1,19 @@
+version: "3"
+
+services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    ports:
+      - 5672:5672
+      - 15672:15672
+    environment:
+      RABBITMQ_DEFAULT_USER: ufscar
+      RABBITMQ_DEFAULT_PASS: iti
+
+  mqtt:
+    image: eclipse-mosquitto:1.6.15-openssl
+    volumes:
+      - ./password.txt:/etc/mosquitto/passwd
+      - ./mqtt.conf:/etc/mosquitto/mosquitto.conf
+    ports:
+      - 1883:1883
