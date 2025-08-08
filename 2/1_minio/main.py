@@ -21,13 +21,11 @@ minio_client = Minio(
 )
 
 
-def upload_model(model_path):
+def upload_model(model_path: str):
     try:
-        # Check if the bucket exists, if not, create it
         if not minio_client.bucket_exists(MINIO_BUCKET_NAME):
             minio_client.make_bucket(MINIO_BUCKET_NAME)
 
-        # Upload the model file to the MinIO bucket
         minio_client.fput_object(
             MINIO_BUCKET_NAME, os.path.basename(model_path), model_path
         )
@@ -38,7 +36,7 @@ def upload_model(model_path):
         print(err)
 
 
-def download_model(model_name, save_path):
+def download_model(model_name, save_path: str):
     try:
         # Download the model file from the MinIO bucket
         minio_client.fget_object(MINIO_BUCKET_NAME, model_name, save_path)
@@ -49,12 +47,14 @@ def download_model(model_name, save_path):
         print(err)
 
 
-# Example usage
-if __name__ == "__main__":
-    model_path = "models/HAR-CNN-Keras-model.h5"  # Path to your machine learning model
+def main():
+    model_path = "models/HAR-CNN-Keras-model.h5"
     upload_model(model_path)
 
-    # Specify the name to download and save the model
     model_name = "HAR-CNN-Keras-model.h5"
     save_path = "downloaded_model.h5"
     download_model(model_name, save_path)
+
+
+if __name__ == "__main__":
+    main()
