@@ -8,7 +8,7 @@ KAFKA_MAX_HISTORY_DEPTH_ROLLBACK = 5
 KAFKA_CONFIG = {
     "bootstrap.servers": "localhost:29092",
     "group.id": "credit-card-consumer-group-analytics-prod",
-    "auto.offset.reset": "latest",  # "earliest",  # <- !!! recuperação em caso de crash
+    "auto.offset.reset": "latest",  # "earliest",  # <- !!! recuperação em caso de crash do consumidor
 }
 
 CONSUMER = Consumer(KAFKA_CONFIG)
