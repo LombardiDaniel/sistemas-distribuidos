@@ -36,3 +36,13 @@ class CacheService:
         """get join from cache, returns none on cache miss"""
         cached_value = self.redis_client.get(_CACHE_JOIN_KEY)
         return cached_value
+
+    def set(self, key: str, val: str, ttl_secs: int):
+        self.redis_client.set(key, val, ex=ttl_secs)
+
+    def get(self, key: str) -> str | None:
+        """get join from cache, returns none on cache miss"""
+        return self.redis_client.get(key)
+
+    def delete(self, key: str):
+        self.redis_client.delete(key)

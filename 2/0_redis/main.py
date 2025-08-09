@@ -23,9 +23,11 @@ redis_client = redis.Redis(host="0.0.0.0", port=6379, db=0)
 # SERVICES
 invoice_service = services.InvoiceService(db_conn)
 cache_service = services.CacheService(redis_client)
+user_service = services.UserService(db_conn)
 
 # HANDLERS
 invoice_handler = handlers.InvoiceHandler(invoice_service, cache_service)
+user_handler = handlers.UserHandler(user_service, cache_service)
 
 # ROUTES
 app.add_url_rule(
@@ -51,6 +53,21 @@ app.add_url_rule(
     view_func=invoice_handler.get_join,
     endpoint="get_join",
     methods=["GET"],
+)
+
+app.add_url_rule(
+    "/users/<int:user_id>",
+    view_func=user_handler.get_user_by_id,
+    endpoint="get_user",
+    methods=["GET"],
+)
+
+app.add_url_rule(
+    # "/users/update/<int:user_id>/<string:user_name>",
+    "/users/<int:user_id>",
+    view_func=user_handler.update_user_name,
+    endpoint="update_user",
+    methods=["POST"],
 )
 
 

@@ -7,7 +7,7 @@ BATCH_SIZE = 100
 KAFKA_CONFIG = {
     "bootstrap.servers": "localhost:9092",
     "group.id": "user-events-telemetry-sa-consumer-group-analytics-prod",
-    "auto.offset.reset": "latest",  # "earliest",  # <- !!! recuperação em caso de crash do consumidor
+    "auto.offset.reset": "earliest",  # "latest",  # <- !!! recuperação em caso de crash do consumidor
 }
 CONSUMER = Consumer(KAFKA_CONFIG)
 TOPIC = "user-events-telemetry-sa"

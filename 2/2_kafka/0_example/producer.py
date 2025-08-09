@@ -7,7 +7,7 @@ from confluent_kafka import Producer
 
 SLEEP_BUFFER = 0.1
 
-KAFKA_CONFIG = {"bootstrap.servers": "localhost:29092"}
+KAFKA_CONFIG = {"bootstrap.servers": "localhost:9092"}
 PRODUCER = Producer(KAFKA_CONFIG)
 TOPIC = "credit-card-transactions"
 
