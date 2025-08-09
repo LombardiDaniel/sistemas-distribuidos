@@ -9,7 +9,9 @@ astunparse==1.6.3
 async-timeout==4.0.3
 attrs==23.2.0
 black==24.4.2
+blinker==1.9.0
 bracex==2.4
+cassandra-driver==3.29.2
 certifi==2024.6.2
 cffi==1.16.0
 charset-normalizer==3.3.2
@@ -19,8 +21,10 @@ cryptography==42.0.7
 dill==0.3.8
 Faker==25.9.1
 filelock==3.14.0
+Flask==3.1.1
 flatbuffers==24.3.25
 gast==0.5.4
+geomet==0.2.1.post1
 google-pasta==0.2.0
 grpcio==1.74.0
 grpcio-tools==1.74.0
@@ -29,6 +33,7 @@ idna==3.7
 importlib-resources==5.0.7
 importlib_metadata==7.2.0
 isort==5.13.2
+itsdangerous==2.2.0
 jedi==0.19.1
 Jinja2==3.1.4
 joblib==1.4.2
@@ -93,7 +98,7 @@ typing_extensions==4.12.0
 tzdata==2024.1
 urllib3==2.2.1
 wcmatch==8.5.2
-Werkzeug==3.0.3
+Werkzeug==3.1.3
 wrapt==1.16.0
 yamllint==1.35.1
 zipp==3.19.2
