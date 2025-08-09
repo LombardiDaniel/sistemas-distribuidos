@@ -21,8 +21,8 @@ services:
   nginx:
     image: nginx:latest
     ports:
-      - "80:80" # mapeia a porta 80 do "nginx" para a porta 80 da máquina, "expoe" o sistema ao mundo
-      - "443:443" # mapeia a porta 443 do "nginx" para a porta 443 da máquina, "expoe" o sistema ao mundo
+      - 80:80 # mapeia a porta 80 do "nginx" para a porta 80 da máquina, "expoe" o sistema ao mundo
+      - 443:443 # mapeia a porta 443 do "nginx" para a porta 443 da máquina, "expoe" o sistema ao mundo
     networks:
       - myapp_network
 

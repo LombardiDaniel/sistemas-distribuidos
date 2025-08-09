@@ -1,3 +1,4 @@
+# git clone https://github.com/lerocha/chinook-database
 version: "3.9"
 
 services:

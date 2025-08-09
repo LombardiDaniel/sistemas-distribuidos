@@ -9,8 +9,8 @@ from minio.error import InvalidResponseError
 
 # MinIO configurations
 MINIO_ENDPOINT = "localhost:9000"
-MINIO_ACCESS_KEY = os.getenv("MINIO_ACCESS_KEY")
-MINIO_SECRET_KEY = os.getenv("MINIO_SECRET_KEY")
+MINIO_ACCESS_KEY = "itiufscar"
+MINIO_SECRET_KEY = "itiufscar"
 MINIO_BUCKET_NAME = "ml-models"
 
 minio_client = Minio(
@@ -27,7 +27,9 @@ def upload_model(model_path: str):
             minio_client.make_bucket(MINIO_BUCKET_NAME)
 
         minio_client.fput_object(
-            MINIO_BUCKET_NAME, os.path.basename(model_path), model_path
+            MINIO_BUCKET_NAME,
+            "meus-modelos/" + os.path.basename(model_path),
+            model_path,
         )
 
         print("Model uploaded successfully!")
