@@ -4,7 +4,7 @@ services:
   rabbitmq:
     image: rabbitmq:3-management
     ports:
-      - "5672:5672"
+      - 5672:5672
     environment:
       RABBITMQ_DEFAULT_USER: itiufscar
       RABBITMQ_DEFAULT_PASS: itiufscar
@@ -12,8 +12,8 @@ services:
   minio:
     image: minio/minio
     ports:
-      - "9000:9000"
-      - "9001:9001"
+      - 9000:9000
+      - 9001:9001
     volumes:
       - minio-data:/data
     environment:
@@ -24,7 +24,7 @@ services:
   mqtt:
     image: eclipse-mosquitto:1.6.15-openssl
     ports:
-      - "1883:1883"
+      - 1883:1883
 
 volumes:
   minio-data:
